@@ -2,7 +2,8 @@ import { useEffect, useRef } from "react"
 import { useQueryClient } from "@tanstack/react-query"
 import type { SSETaskUpdateEvent } from "../types"
 
-const SSE_URL = "http://localhost:3000/sse/task-updates"
+// Derive SSE endpoint from the same env var as the REST client so they always point at the same backend.
+const SSE_URL = `${import.meta.env.VITE_API_URL as string}/sse/task-updates`
 const MAX_RETRIES = 3
 
 // Establish an EventSource link to backend updates.

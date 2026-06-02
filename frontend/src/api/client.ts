@@ -1,8 +1,8 @@
 import type { ActionCenterResponse, StudentSummary, Task, TaskStatus } from "../types"
 
-// Tradeoff: Base URL is hardcoded to localhost:3000. Fits our local dev environment perfectly,
-// but we'll need to inject an environment variable (e.g. import.meta.env.VITE_API_URL) for production.
-const BASE_URL = "http://localhost:3000"
+// VITE_API_URL is injected by Vite at build time from the .env file.
+// Locally this points to localhost:3000; on Vercel it will be set to the Render backend URL.
+const BASE_URL = import.meta.env.VITE_API_URL as string
 
 // Using standard fetch API instead of axios to keep the bundle size small.
 // Tradeoff: We have to handle non-2xx statuses manually and read JSON error objects ourselves.
